@@ -1,0 +1,28 @@
+name: Yash Chaurasia
+dp: assets/images/Yash.jpg
+description: "
+  <p>
+    I am a B.Tech in Computer Science + M.S. by research in Computational Natural Sciences student at International Institute of Information Technology, Hyderabad.
+    <br/>
+    I am doing my Master's in Computational High Energy Physics.
+  </p>
+  <br/>
+  <p>
+    I love physics, mathematics and computer science. I have a <a href='https://ieeexplore.ieee.org/document/9680581' target='_blank'>publication</a> (and a provisional patent) in proof-of-useful-work protocols.
+    Currently, I am exploring cryptography and its applications like zkSNARKs, end-to-end auditable voting, multiparty computation, fully homomorphic encryption, etc.
+  </p>
+  <br/>
+  <p>
+    I engage in a lot of group discussions and would be open to hear anything interesting. I am actively looking for job opportunites at the moment.
+  </p>
+"
+email: yash.chaurasia@research.iiit.ac.in
+contact:
+  - title: linkedin
+    url: https://in.linkedin.com/in/yash~chaurasia
+  - title: github
+    url: https://github.com/Y5Yash
+  - title: telegram
+    url: https://t.me/C_Yash
+  - title: email
+    url: mailto:yash.chaurasia@research.iiit.ac.in
