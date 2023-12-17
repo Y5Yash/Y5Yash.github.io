@@ -8,9 +8,6 @@
           <h2 class="article-title">{{page.title}}</h2>
           <small class="date">{{page.date | date_to_string}}</small>
           <div class="categories">
-            {% for c in page.categories %}
-            <a href="#!" class="category">{{c}}</a>
-            {% endfor %}
           </div>
         </div>
         <div class="content">{{content}}</div>
