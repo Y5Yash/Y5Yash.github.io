@@ -3,7 +3,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{site.title}} | {{page.title}}</title>
-  {% if page.layout == "post" %}
+  <link rel="stylesheet" href="{{site.baseurl}}/assets/css/navbar.css" />
+  {% if page.layout == "post" or page.layout == "entry" %}
   <link rel="stylesheet" href="{{site.baseurl}}/assets/css/post.css" />
   <link rel="stylesheet" href="{{site.baseurl}}/assets/css/syntax.css" />
   {% else %}
@@ -11,7 +12,7 @@
   {%endif%}
   <link rel="stylesheet" href="{{site.baseurl}}/assets/css/common.css" />
   <!-- <script src="{{site.baseurl}}/assets/js/categories.js"></script> -->
-  {% if page.layout == "post" %}
+  {% if page.layout == "post" or page.layout == "entry" %}
   <script defer src="{{site.baseurl}}/assets/js/lbox.js"></script>
   <script src="{{site.baseurl}}/assets/js/mathjax-config.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>

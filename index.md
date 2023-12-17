@@ -1,4 +1,4 @@
 ---
-title: Blog
-layout: blog
+title: Yash Chaurasia
+layout: about
 ---

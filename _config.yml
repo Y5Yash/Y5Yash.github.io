@@ -16,10 +16,19 @@ collections_dir: all_collections
 collections:
   posts:
     output: true
+  entries:
+    output: true
 
 defaults:
   - scope:
+      path: "_entries"
+      type: "entries"
+    values:
+      layout: "entry"
+      permalink: /entries/:title/
+  - scope:
       path: "_posts"
+      type: "posts"
     values:
       layout: "post"
       permalink: /posts/:title/

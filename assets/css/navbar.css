@@ -1,0 +1,24 @@
+
+  nav {
+    background-color: #505050;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+  }
+  
+  nav a:hover {
+    text-decoration: underline;
+    color:aqua;
+  }
+  
+  .content {
+    margin: 20px;
+  }
+  
