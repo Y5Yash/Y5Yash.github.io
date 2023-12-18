@@ -1,6 +1,6 @@
 ---
 layout: entry
-title: And it begins!
+title: And it begins! (Arambidhama)
 date: 2023-12-17
 categories: ["blockchain", "cryptography", "paper-review"]
 ---
@@ -11,3 +11,7 @@ To understand how resource intensive and enjoyable blogging and journaling are, 
 In contrast, I intend to write **serious** blogs. They can either be note-taking, intuition-registration, hacks which I'll otherwise forget, or just explanations of things I found interesting. While I don't intend to maintain professional standards in my blog posts, I'll be happy to be corrected and scrutinized over small details.
 
 It's already 18th and I've missed my sleeping goals already. It's time I sign-out for the day. I will continue rambling my half-cooked thoughts tomorrow. Best of luck to myself :thumbsup:.
+
+
+
+![Arambidhama](../../assets/images/journal/arambidhama.gif)
