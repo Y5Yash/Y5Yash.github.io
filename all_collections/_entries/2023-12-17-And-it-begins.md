@@ -2,7 +2,7 @@
 layout: entry
 title: And it begins! (Arambidhama)
 date: 2023-12-17
-categories: ["blockchain", "cryptography", "paper-review"]
+categories: []
 ---
 I've thought of starting and maintaining a blog many times in the past half decade, but chose to be a victim of circumstances. It took me joblessness to finally put in the efforts required to start blogging and journaling. Of course, this is the first journal entry and I don't know how this will turn out :crossed_fingers:.
 
