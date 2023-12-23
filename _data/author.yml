@@ -2,18 +2,18 @@ name: Yash Chaurasia
 dp: assets/images/Yash.jpg
 description: "
   <p>
-    I am a B.Tech in Computer Science + M.S. by research in Computational Natural Sciences student at International Institute of Information Technology, Hyderabad.
+    Hey! I am Yash, a B.Tech in C.S. + M.S. by research in Computational Natural Sciences student at IIIT Hyderabad.
     <br/>
-    I am doing my Master's in Computational High Energy Physics.
+    I recently defended my Master's thesis in Computational High Energy Physics.
   </p>
   <br/>
   <p>
-    I love physics, mathematics and computer science. I have a <a href='https://ieeexplore.ieee.org/document/9680581' target='_blank'>publication</a> (and a provisional patent) in proof-of-useful-work protocols.
-    Currently, I am exploring cryptography and its applications like zkSNARKs, end-to-end auditable voting, multiparty computation, fully homomorphic encryption, etc.
+    I love physics, mathematics and computer science. I have a <a href='https://ieeexplore.ieee.org/document/9680581' target='_blank'>publication</a> (and a patent) in proof-of-useful-work protocols.
+    I am on a quest to learn more on applications of cryptography like ZKPs, MPC, FHE, VRFs, RLNs, E2E verifiable voting, etc.
   </p>
   <br/>
   <p>
-    I engage in a lot of group discussions and would be open to hear anything interesting. I am actively looking for job opportunites at the moment.
+    I engage in a lot of group discussions and am open to hear and brainstorm on anything interesting. Currently, I am looking for a job that would best suit my interests and skills.
   </p>
 "
 email: yash.chaurasia@research.iiit.ac.in
@@ -24,5 +24,12 @@ contact:
     url: https://github.com/Y5Yash
   - title: telegram
     url: https://t.me/C_Yash
+  - title: linktree
+    url: https://linktr.ee/cyash
   - title: email
     url: mailto:yash.chaurasia@research.iiit.ac.in
+  - title: twitter
+    url: https://twitter.com/Y5_Yash
+  - title: scholar
+    url: https://scholar.google.com/citations?user=F5qtfZ0AAAAJ
+

@@ -25,13 +25,13 @@ The following are some of the desirable properties of an E2E voting system:
 
 A more complete list of desirable properties in elections can be found [here](https://www.cs.cornell.edu/courses/cs513/2002SP/proj.00.StuSolns/sp2580.htm)
 
-I will show how a voting application using just AnonAadhaar satisfies properties 1,2 and 3 but fails to ensure properties 4 and 5. The proposed solution using [Semaphore Protocol](https://semaphore.pse.dev/) ensures forward secrecy, but only ensures non-coercibility under certain conditions.
+I will show how a voting application using just AnonAadhaar satisfies properties 1 and 2 but fails to ensure properties 3, 4 and 5. The proposed solution using [Semaphore Protocol](https://semaphore.pse.dev/) ensures forward secrecy, but only ensures non-coercibility under certain conditions. Ensuring eligibility verification would require changes at protocol level.
 
 # Pre-requisites
 
 ### How Anon Aadhaar Works
 
-AnonAadhaar allows users to produce a zero-knowledge-proof of unique Aadhaar ownership. The Government of India signs the Aadhaar PDF hash using their RSA private key to allow verifying the validity of an Aadhaar PDF. We'll assume that the PDF downloaded from government's website is always the same (it's not the same; the timestamps are different and thus hashes are different too). A proof generation circuit takes PDF hash and RSA signature as private inputs and government's RSA public key and application id as public inputs. The RSA signature and RSA public key are used to verify signature to ensure the legitimacy of an Aadhaar PDF. The application id and PDF hash are hashed together to output a nullifier. The purpose of the nullifier is track interaction of a user on the application (e.g. to allow someone to vote only once). The application id (supposed to be unique for each application) is to ensure different nullifier for different applications.
+AnonAadhaar allows users to produce a zero-knowledge-proof of unique Aadhaar ownership. The Government of India signs the Aadhaar PDF hash using their RSA private key to allow verifying the validity of an Aadhaar PDF. We'll assume that the PDF downloaded from government's website is always the same (it's not the same; the timestamps are different and thus, hashes are different too). A proof generation circuit takes PDF hash and RSA signature as private inputs and government's RSA public key and application id as public inputs. The RSA signature and RSA public key are used to verify signature to ensure the legitimacy of an Aadhaar PDF. The application id and PDF hash are hashed together to output a nullifier. The purpose of the nullifier is to track the interaction of a user on the application (e.g. to allow someone to vote only once). The application id (supposed to be unique for each application) is to ensure different nullifier for different applications.
 
 Checkout AnonAadhaar's [Github](https://github.com/privacy-scaling-explorations/anon-aadhaar) and [Documentation](https://anon-aadhaar-documentation.vercel.app/) for full details and updates.
 
@@ -45,7 +45,7 @@ Using Semaphore Protocol users can register for an application and then anonymou
 
 # Deanonymizing a voter
 
-The main intuition of the attack is that the PDF hash remains the same for the user and if the application id is also kept the same during two proof generations, the output nullifier will be the same. If the offchain identity of the person is revealed in one of the 
+The main intuition of the attack is that the PDF hash remains the same for the user and if the application id is also kept the same during two proof generations, the output nullifier will be the same. If the offchain identity of the person is revealed in one of the application, the proof becomes reusable in the other.
 
 ### Step 1 - Sensitive Voting
 
@@ -60,7 +60,7 @@ The smart contract verifies whether the proof is valid using *A* (hard coded in 
 
 If an attacker makes a new application with the same app_id *A*, the nullifier produced for person *P* will be the same, i.e., *N*. The malicious dApp can have an innocent functionality, e.g. giving feedback using Anon Aadhaar to get freebies and posting a selfie on Twitter. We see a lot of hackathon participants flock to earn free merchandise, often giving away their private data without thinking twice. Thus, *P*'s nullifier *N_a* is linked to their offchain identity.
 All voting transactions can be looked up to find out which one has nullifier *N = N_a* and once the transaction is identified, the person's vote *V_p* is revealed.
-Thus, secrecy is not guaranteed. Also, by revealing their Aadhaar PDF hash (which they can't forget as the PDF can be redownloaded) they can produce proofs of who they voted for, i.e. get coerced.
+Thus, secrecy is not guaranteed. Also, by revealing their Aadhaar PDF hash (which they can't forget as the PDF can be redownloaded), they can produce proofs of who they voted for, i.e. get coerced.
 
 # Impersonation Attack
 
@@ -69,21 +69,21 @@ If the same attack as above is done in the opposite order, the attacker can vote
  - Build the malicious dApp and get users' nullifiers before they vote on the voting application
  - Using their proof and *N_a*, vote on the sensitive application
 
-This attack doesn't ensure eligibility verifiability together with not being secure and non-coercive. Note that this need not be restricted to smart contracts, Anon Aadhaar is designed to be used for off-chain applications too.
+This attack doesn't ensure eligibility verifiability together with not being secure and non-coercive. Note that this need not be restricted to smart contracts; Anon Aadhaar is designed to be used for off-chain applications too.
 
 # Mitigating these Attacks
 
 ### Mitigating Impersonation Attack
 
-Impersonation Attack (arguably a more serious attack) on chain can be mitigated by the following updates to the protocol:
- - Add wallet address as a public input and find dummy square in the RSA signature verifying circuit.
+Impersonation Attacks (arguably a more serious attack) on-chain can be mitigated by the following updates to the protocol:
+ - Add wallet address as a public input and compute dummy square in the RSA signature verifying circuit.
  - While verifying the proof, use the transaction's *msg.sender* as the wallet address public input.
 
 As the proof produced now has the address as an input, only the address owner can sign the transaction. Thus, the proof can't be reused elsewhere, ensuring eligibility verifiability. Forward secrecy is still not guaranteed. As forward secrecy is not guaranteed, neither is non-coercion.
 
 ### Mitigating Deanonymization Attack
 
-If the nullifier and vote can be linked easily, deanonymization is always possible. The intuition to avoid this is to decouple the registration (prove and produce nullifier) step from the voting step in such a way they can't be linked. The solution I proposed in EthIndia 2023 was to use Semaphore Protocol. As mentioned [above](#semaphore-protocol), Semaphore allows for anonymous signalling following the registration step. Thus, despite knowing a user's nullifier, their vote cannot be found out. All that an attacker can know is if the user register or not. Note that the attacker can't even find if the user vote or not. Thus, forward secrecy is now ensured (Note that eligibility verification is still not ensured, impersonation attack is possible with semaphore solution).
+If the nullifier and vote can be linked easily, deanonymization attack is possible. The intuition to avoid this is to decouple the registration (prove and produce nullifier) step from the voting step in such a way that they can't be linked. The solution I proposed in EthIndia 2023 was to use Semaphore Protocol. As mentioned [above](#semaphore-protocol), Semaphore allows for anonymous signalling following the registration step. Thus, despite knowing a user's nullifier, their vote cannot be found out. All that an attacker can know is if the user register or not. Note that the attacker can't even find if the user voted or not. Thus, forward secrecy is now ensured (Note that eligibility verification is still not ensured, impersonation attack is possible with semaphore solution).
 
 Mitigating non-coercion is also non-trivial. One solution to it would be to ask users to forget their identity trapdoor and identity nullifier as soon as they vote. This can be inconvenient in some cases.[^1]
 
